@@ -29,5 +29,4 @@ class UserRegistrationSchema(Schema):
 
             if collection.find_one({'email': data['email']}) is not None:
                 raise ValidationError('Email already exists')
-
         return data
