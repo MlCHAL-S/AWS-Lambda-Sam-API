@@ -1,0 +1,18 @@
+# For sending the http requests
+requests
+
+# Ultra json. Faster than regular json
+ujson
+
+# Required for the mongo db
+pymongo
+dnspython
+
+# Helps convert complex data types to/from python native data types
+marshmallow
+
+# For security
+pyjwt
+
+# For password hashing
+argon2-cffi
