@@ -57,3 +57,20 @@ Resources:
             Method: GET
             Auth:
               Authorizer: NONE
+
+  OrganizationUserUpdateById:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: organizations/user/
+      Handler: update.app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Events:
+        CompanyUserUpdateByIdAPI:
+          Type: Api
+          Properties:
+            Path: '/user/{Id}'
+            Method: PUT
+            Auth:
+              Authorizer: NONE
