@@ -8,7 +8,7 @@ Globals:
 
 Resources:
   OrganizationUserCreate:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: organizations/user/
       Handler: create.app.lambda_handler
@@ -17,9 +17,43 @@ Resources:
         - x86_64
       Events:
         CompanyCreateUserPostAPI:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: '/user'
             Method: POST
+            Auth:
+              Authorizer: NONE
+
+  OrganizationUserRead:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: organizations/user/
+      Handler: read.app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Events:
+        CompanyUserGetAPI:
+          Type: Api
+          Properties:
+            Path: '/user'
+            Method: GET
+            Auth:
+              Authorizer: NONE
+
+  OrganizationUserReadById:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: organizations/user/
+      Handler: read.app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Events:
+        CompanyUserGetByIdAPI:
+          Type: Api
+          Properties:
+            Path: '/user/{Id}'
+            Method: GET
             Auth:
               Authorizer: NONE
