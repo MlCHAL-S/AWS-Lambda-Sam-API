@@ -74,3 +74,20 @@ Resources:
             Method: PUT
             Auth:
               Authorizer: NONE
+
+  OrganizationUserDeleteById:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: organizations/user/
+      Handler: delete.app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Events:
+        CompanyUserDeleteByIdAPI:
+          Type: Api
+          Properties:
+            Path: '/user/{Id}'
+            Method: DELETE
+            Auth:
+              Authorizer: NONE
